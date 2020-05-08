@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:covid19app/data_source.dart';
+import 'package:covid19app/panels/info_panel.dart';
 import 'package:covid19app/panels/most_effected_countries.dart';
 import 'package:covid19app/panels/world_wide_panel.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   fetchCountriesData() async {
     http.Response response = await http.get(
-        'https://corona.lmao.ninja/v2/countries');
+        'https://corona.lmao.ninja/v2/countries?sort=cases');
     setState(() {
       countriesData = json.decode(response.body);
     });
@@ -101,14 +102,26 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                'Worldwide',
+                'Most affected Countries',
                 style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold
                 ),
               ),
             ),
-            countriesData == null ? Container() : MostAffectedPanel(countryData: countriesData,)
+            SizedBox(height: 10,),
+            countriesData == null ? Container() : MostAffectedPanel(countryData: countriesData,),
+            SizedBox(height:5,),
+            InfoPanel(),
+            SizedBox(height:10,),
+            Text('WE ARE TOGETHER IN THIS :)',
+              style: TextStyle(
+                color: primaryBlack,
+                fontSize: 16,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            SizedBox(height:40,),
           ],
         ),
       ),
