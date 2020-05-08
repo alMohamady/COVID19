@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:covid19app/data_source.dart';
+import 'package:covid19app/pages/country_page.dart';
 import 'package:covid19app/panels/info_panel.dart';
 import 'package:covid19app/panels/most_effected_countries.dart';
 import 'package:covid19app/panels/world_wide_panel.dart';
@@ -79,18 +80,23 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: primaryBlack,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Regional',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CountryPage() ));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: primaryBlack,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'Regional',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                        ),
                       ),
                     ),
                   ),
@@ -114,11 +120,13 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height:5,),
             InfoPanel(),
             SizedBox(height:10,),
-            Text('WE ARE TOGETHER IN THIS :)',
-              style: TextStyle(
-                color: primaryBlack,
-                fontSize: 16,
-                fontWeight: FontWeight.bold
+            Center(
+              child: Text('WE ARE TOGETHER IN THIS :)',
+                style: TextStyle(
+                  color: primaryBlack,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold
+                ),
               ),
             ),
             SizedBox(height:40,),
